@@ -12,3 +12,8 @@ rustup component add clippy
 cargo install cargo-watch
 cargo-watch -qc -x run -x clippy
 ```
+
+# Variables
+
+- Only `snake_case_variable` is valid.
+- `let` is unchangeable, `let mut` is changeable
