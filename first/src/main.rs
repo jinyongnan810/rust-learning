@@ -2,10 +2,12 @@
 #![deny(clippy::all)]
 fn main() {
     println!("Hello, Rust!");
-    variables()
+    variables();
+    ownership()
 }
 
 fn variables() {
+    println!("----------variables----------");
     // constants
     const MAX_POINTS: u32 = 100_000;
     println!("MAX_POINTS = {}", MAX_POINTS);
@@ -28,4 +30,22 @@ fn variables() {
     println!("tup.0 = {}", tup.0);
     let (x, y, z) = tup;
     println!("x = {}, y = {}, z = {}", x, y, z);
+}
+
+fn ownership() {
+    println!("----------ownership----------");
+    let name = String::from("Rust");
+    // name is "moved" to name2
+    let name2 = name;
+    // cannot use name anymore
+    // println!("name = {}", name);
+    println!("name2 = {}", name2);
+    // using pointer to reference without "moving"
+    let name3 = &name2;
+    println!("name3 = {}", name3);
+
+    let age = 18;
+    let age2 = age;
+    println!("age = {}", age);
+    println!("age2 = {}", age2);
 }
