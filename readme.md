@@ -30,9 +30,21 @@ println!("name = {}", name);
 println!("name2 = {}", name2);
 ```
 
-- using pointer to avoid moving. ![ref](https://doc.rust-lang.org/book/img/trpl04-05.svg)
+- using reference to avoid moving. ![ref](https://doc.rust-lang.org/book/img/trpl04-05.svg)
 
 ```rust
 let name3 = &name2;
 println!("name3 = {}", name3);
+
+// moving also happens when take String as params
+// the variable send to this function will be moved and cannot be accessed again
+fn greet(name: String) {
+    println!("Hello, {}!", name);
+}
+// so usually we make params with reference type
+fn greet(name: &String) {
+    println!("Hello, {}!", name);
+}
+
+
 ```

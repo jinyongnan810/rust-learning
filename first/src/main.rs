@@ -40,6 +40,7 @@ fn ownership() {
     // cannot use name anymore
     // println!("name = {}", name);
     println!("name2 = {}", name2);
+    greet(&name2);
     // using pointer to reference without "moving"
     let name3 = &name2;
     println!("name3 = {}", name3);
@@ -48,4 +49,8 @@ fn ownership() {
     let age2 = age;
     println!("age = {}", age);
     println!("age2 = {}", age2);
+}
+
+fn greet(name: &String) {
+    println!("Hello, {}!", name);
 }
