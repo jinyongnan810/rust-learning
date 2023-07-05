@@ -44,6 +44,10 @@ fn ownership() {
     // using pointer to reference without "moving"
     let name3 = &name2;
     println!("name3 = {}", name3);
+    // mutable reference
+    let mut garbage = String::from("garbage");
+    empty_string(&mut garbage);
+    println!("garbage = {}", garbage);
 
     let age = 18;
     let age2 = age;
@@ -53,4 +57,7 @@ fn ownership() {
 
 fn greet(name: &String) {
     println!("Hello, {}!", name);
+}
+fn empty_string(garbage: &mut String) {
+    garbage.clear();
 }

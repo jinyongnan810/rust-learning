@@ -46,5 +46,11 @@ fn greet(name: &String) {
     println!("Hello, {}!", name);
 }
 
+// &String is immutable, to make it mutable, use &mut String
+// memo: mutable reference is allowed only one at a time
+fn empty_string(garbage: &mut String) {
+    garbage.clear();
+}
 
+// borrow neighbor's car example
 ```
