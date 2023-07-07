@@ -3,7 +3,8 @@
 fn main() {
     println!("Hello, Rust!");
     variables();
-    ownership()
+    ownership();
+    functions();
 }
 
 fn variables() {
@@ -60,4 +61,36 @@ fn greet(name: &String) {
 }
 fn empty_string(garbage: &mut String) {
     garbage.clear();
+}
+
+fn functions() {
+    println!("----------functions----------");
+    let hello = get_hello(String::from("Rust"));
+    println!("{}", hello);
+    say_hello();
+
+    // inline functions
+    let say_goodbye = |name: String| println!("Goodbye, {}!", name);
+    say_goodbye(String::from("Rust"));
+    let cal = |x: i32, y: i32| {
+        let sum = x + y;
+        let diff = x - y;
+        sum * diff
+    };
+    println!("(x+y)(x-y)= {}", cal(10, 5));
+
+    // callback
+    fn fn_need_callback(x: i32, y: i32, callback: fn(i32) -> ()) {
+        callback(x + y);
+    }
+    fn_need_callback(10, 5, |sum| println!("sum = {}", sum));
+}
+fn get_hello(to_person: String) -> String {
+    format!("hello {}!", to_person)
+}
+
+// Unit type in Rust is ()
+// fn say_hello() -> () {
+fn say_hello() {
+    println!("Hello, Rust!");
 }
