@@ -5,6 +5,7 @@ fn main() {
     variables();
     ownership();
     functions();
+    structures();
 }
 
 fn variables() {
@@ -88,9 +89,63 @@ fn functions() {
 fn get_hello(to_person: String) -> String {
     format!("hello {}!", to_person)
 }
-
 // Unit type in Rust is ()
 // fn say_hello() -> () {
 fn say_hello() {
     println!("Hello, Rust!");
+}
+
+// allow debug for struct
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+}
+// tuple struct
+struct Position(i32, i32, i32);
+// struct implementation
+impl Position {
+    fn describe(&self) {
+        println!(
+            "described as x = {}, y = {}, z = {}",
+            self.0, self.1, self.2
+        );
+    }
+    fn distance(&self, other: &Position) -> f64 {
+        let x = (self.0 - other.0).pow(2);
+        let y = (self.1 - other.1).pow(2);
+        let z = (self.2 - other.2).pow(2);
+        ((x + y + z) as f64).sqrt()
+    }
+    fn make_twice(&mut self) {
+        self.0 *= 2;
+        self.1 *= 2;
+        self.2 *= 2;
+    }
+    fn zero() -> Position {
+        Position(0, 0, 0)
+    }
+}
+fn structures() {
+    println!("----------structures----------");
+    let mut person = Person {
+        name: String::from("Rust"),
+        age: 18,
+        // impl Debug for Person
+    };
+    println!("name = {}, age = {}", person.name, person.age);
+    println!("person = {:?}", person);
+    person.age += 1;
+    println!("name = {}, age = {}", person.name, person.age);
+    let person2 = Person { age: 33, ..person };
+    println!("name = {}, age = {}", person2.name, person2.age);
+    // tuple struct
+    let position = Position::zero();
+    println!("x = {}, y = {}, z = {}", position.0, position.1, position.2);
+    position.describe();
+    let mut position2 = Position(1, 1, 1);
+    println!("distance = {}", position.distance(&position2));
+    position2.make_twice();
+    println!("distance = {}", position.distance(&position2));
+    // println!("position = {:?}", position);
 }
