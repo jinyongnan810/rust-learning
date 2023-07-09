@@ -54,3 +54,36 @@ fn empty_string(garbage: &mut String) {
 
 // borrow neighbor's car example
 ```
+
+# Functions
+
+```rust
+// inline functions and callback functions
+fn fn_need_callback(x: i32, y: i32, callback: fn(i32) -> ()) {
+    callback(x + y);
+}
+fn_need_callback(10, 5, |sum| println!("sum = {}", sum));
+```
+
+# Structures
+```rust
+// make a structure and print
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+}
+let mut person = Person {
+    name: String::from("Rust"),
+    age: 18,
+    // impl Debug for Person
+};
+println!("person = {:?}", person);
+// make structure functions using impl
+struct Position(i32, i32, i32); // tuple structure
+impl Position {
+    fn xxx(self) {
+        // do something...
+    }
+}
+```
