@@ -6,6 +6,7 @@ fn main() {
     ownership();
     functions();
     structures();
+    enums();
 }
 
 fn variables() {
@@ -148,4 +149,24 @@ fn structures() {
     position2.make_twice();
     println!("distance = {}", position.distance(&position2));
     // println!("position = {:?}", position);
+}
+
+// note the naming convention
+#[derive(Debug, PartialEq)]
+enum AnimalType {
+    Dog,
+    Cat,
+    Bird,
+}
+fn enums() {
+    println!("----------enums----------");
+    let animal = AnimalType::Dog;
+    // println!("animal = {:?}", animal);
+    println!("is dog? {}", animal == AnimalType::Dog);
+    match animal {
+        AnimalType::Dog => println!("dog"),
+        AnimalType::Cat => println!("cat"),
+        // AnimalType::Bird => println!("bird"),
+        _ => println!("some other"),
+    }
 }
