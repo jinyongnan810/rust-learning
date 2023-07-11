@@ -158,15 +158,40 @@ enum AnimalType {
     Cat,
     Bird,
 }
+
+enum Shape {
+    Circle { radius: f64, center: (f64, f64) },
+    Rectangle { width: f64, height: f64 },
+}
 fn enums() {
     println!("----------enums----------");
     let animal = AnimalType::Dog;
-    // println!("animal = {:?}", animal);
+    println!("animal = {:?}", animal);
     println!("is dog? {}", animal == AnimalType::Dog);
     match animal {
         AnimalType::Dog => println!("dog"),
         AnimalType::Cat => println!("cat"),
         // AnimalType::Bird => println!("bird"),
         _ => println!("some other"),
+    }
+
+    let shape1 = Shape::Circle {
+        radius: 1.0,
+        center: (0.0, 0.0),
+    };
+    let shape2 = Shape::Rectangle {
+        width: 1.0,
+        height: 1.0,
+    };
+    match shape1 {
+        Shape::Circle { radius, center } => {
+            println!("circle with radius {} at {:?}", radius, center)
+        }
+        Shape::Rectangle { width, height } => {
+            print!("rectangle with width {} and height {}", width, height)
+        }
+    }
+    if let Shape::Rectangle { width, height } = shape2 {
+        println!("rectangle with width {} and height {}", width, height)
     }
 }
