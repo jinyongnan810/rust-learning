@@ -163,6 +163,15 @@ enum Shape {
     Circle { radius: f64, center: (f64, f64) },
     Rectangle { width: f64, height: f64 },
 }
+impl Shape {
+    fn area(&self) -> f64 {
+        // match returns value
+        match self {
+            Shape::Circle { radius, .. } => std::f64::consts::PI * radius.powi(2),
+            Shape::Rectangle { width, height } => width * height,
+        }
+    }
+}
 fn enums() {
     println!("----------enums----------");
     let animal = AnimalType::Dog;
@@ -176,12 +185,12 @@ fn enums() {
     }
 
     let shape1 = Shape::Circle {
-        radius: 1.0,
+        radius: 2.0,
         center: (0.0, 0.0),
     };
     let shape2 = Shape::Rectangle {
-        width: 1.0,
-        height: 1.0,
+        width: 2.0,
+        height: 2.0,
     };
     match shape1 {
         Shape::Circle { radius, center } => {
@@ -194,4 +203,6 @@ fn enums() {
     if let Shape::Rectangle { width, height } = shape2 {
         println!("rectangle with width {} and height {}", width, height)
     }
+    println!("area = {}", shape1.area());
+    println!("area = {}", shape2.area());
 }
