@@ -87,3 +87,37 @@ impl Position {
     }
 }
 ```
+
+# Enums
+```rust
+// simple enum
+enum AnimalType {
+    Dog,
+    Cat,
+    Bird,
+}
+// enum with data
+enum Shape {
+    Circle { radius: f64, center: (f64, f64) },
+    Rectangle { width: f64, height: f64 },
+}
+// impl can also apply to enums
+impl Shape {
+    fn area(&self) -> f64 {
+        // calculate size
+    }
+}
+
+// to check enum type
+// way 1(need #[derive(PartialEq)])
+animal == AnimalType::Dog
+// wat 2
+if let Shape::Rectangle { width, height } = shape2 {
+    println!("rectangle with width {} and height {}", width, height)
+}
+// wat 3
+match shape1 {
+    Shape::Circle { radius, .. } => std::f64::consts::PI * radius.powi(2),
+    Shape::Rectangle { width, height } => width * height,
+}
+```
