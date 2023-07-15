@@ -1,5 +1,7 @@
 // setup clippy
 #![deny(clippy::all)]
+
+use std::fmt::format;
 fn main() {
     println!("Hello, Rust!");
     variables();
@@ -7,6 +9,7 @@ fn main() {
     functions();
     structures();
     enums();
+    collections();
 }
 
 fn variables() {
@@ -205,4 +208,22 @@ fn enums() {
     }
     println!("area = {}", shape1.area());
     println!("area = {}", shape2.area());
+}
+
+fn collections() {
+    println!("----------collections----------");
+    // tuples
+    let person = ("Rust", 18);
+    println!("name = {}, age = {}", person.0, person.1);
+    let (name, age) = person;
+    println!("name = {}, age = {}", name, age);
+    // vectors(like list/array)
+    let values = [4.2, 0.5];
+    for value in values.iter() {
+        println!("value = {}", value);
+    }
+    let new_values = values.iter().map(|value| value * 2.2);
+    for value in new_values {
+        println!("value = {}", value);
+    }
 }
