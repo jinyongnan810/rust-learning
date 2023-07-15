@@ -1,7 +1,5 @@
 // setup clippy
 #![deny(clippy::all)]
-
-use std::fmt::format;
 fn main() {
     println!("Hello, Rust!");
     variables();
@@ -156,6 +154,7 @@ fn structures() {
 
 // note the naming convention
 #[derive(Debug, PartialEq)]
+#[allow(dead_code)]
 enum AnimalType {
     Dog,
     Cat,
