@@ -216,6 +216,7 @@ fn collections() {
     println!("name = {}, age = {}", person.0, person.1);
     let (name, age) = person;
     println!("name = {}, age = {}", name, age);
+
     // vectors(like list/array)
     let values = [4.2, 0.5];
     for value in values.iter() {
@@ -225,4 +226,18 @@ fn collections() {
     for value in new_values {
         println!("value = {}", value);
     }
+    // size changeable vector
+    // can also create by let mut numbers = Vec::new();, but it's not recommended to push right after it.
+    let mut numbers: Vec<i32> = vec![0];
+    numbers.push(1);
+    numbers.push(2);
+    numbers.extend_from_slice(&[3, 4, 5]);
+    println!("numbers = {:?}", numbers);
+    let mut another_numbers = vec![6];
+    numbers.append(&mut another_numbers);
+    println!("numbers = {:?}", numbers);
+    println!("another_numbers = {:?}", another_numbers);
+    println!("numbers has 5? {}", numbers.contains(&5));
+    println!("numbers is empty? {}", numbers.is_empty());
+    println!("another numbers is empty? {}", another_numbers.is_empty());
 }
