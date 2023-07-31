@@ -209,6 +209,7 @@ fn enums() {
     println!("area = {}", shape2.area());
 }
 
+use std::collections::HashMap;
 fn collections() {
     println!("----------collections----------");
     // tuples
@@ -240,4 +241,20 @@ fn collections() {
     println!("numbers has 5? {}", numbers.contains(&5));
     println!("numbers is empty? {}", numbers.is_empty());
     println!("another numbers is empty? {}", another_numbers.is_empty());
+
+    // hashmap
+    let mut map = HashMap::new();
+    map.insert("hello", "world");
+    println!("map = {:?}", map);
+    println!("map[hello] = {:?}", map.get("hello"));
+    println!("contains hello? {}", map.contains_key("hello"));
+    match map.get("hello1") {
+        Some(value) => println!("value = {}", value),
+        None => println!("no value"),
+    }
+    for (&key, &value) in &map {
+        println!("key = {}, value = {}", key, value);
+    }
+    map.entry("hello").or_insert("world1");
+    println!("map = {:?}", map);
 }
