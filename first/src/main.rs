@@ -257,4 +257,16 @@ fn collections() {
     }
     map.entry("hello").or_insert("world1");
     println!("map = {:?}", map);
+
+    // Iterators
+    for value in numbers.iter() {
+        println!("value = {}", value);
+    }
+    println!("sum = {}", numbers.iter().sum::<i32>());
+    numbers
+        .iter()
+        .map(|x| x * 2)
+        .for_each(|x| println!("x = {}", x));
+    let doubled = numbers.iter().map(|x| x * 2).collect::<Vec<i32>>();
+    println!("doubled = {:?}", doubled);
 }
