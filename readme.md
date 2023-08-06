@@ -121,3 +121,20 @@ match shape1 {
     Shape::Rectangle { width, height } => width * height,
 }
 ```
+
+# Collections
+```rust
+// simple structures can be create by tuples
+let person = ("Rust", 18);
+println!("name = {}, age = {}", person.0, person.1);
+let (name, age) = person;
+
+// List of items is described as Vector
+let mut numbers: Vec<i32> = vec![0];
+// most of list actions can be found in the Iterator 
+println!("sum = {}", numbers.iter().sum::<i32>());
+let doubled = numbers.iter().map(|x| x * 2).collect::<Vec<i32>>();
+
+// creating hashmap
+let mut map = HashMap::new();
+```
