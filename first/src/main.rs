@@ -269,4 +269,9 @@ fn collections() {
         .for_each(|x| println!("x = {}", x));
     let doubled = numbers.iter().map(|x| x * 2).collect::<Vec<i32>>();
     println!("doubled = {:?}", doubled);
+    let even = numbers
+        .iter()
+        .filter(|x| **x % 2 == 0)
+        .collect::<Vec<&i32>>();
+    println!("even = {:?}", even);
 }
