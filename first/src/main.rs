@@ -8,6 +8,7 @@ fn main() {
     structures();
     enums();
     collections();
+    optionals();
 }
 
 fn variables() {
@@ -274,4 +275,20 @@ fn collections() {
         .filter(|x| **x % 2 == 0)
         .collect::<Vec<&i32>>();
     println!("even = {:?}", even);
+}
+
+fn optionals() {
+    println!("----------optionals----------");
+    let mut maybe_number: Option<i32> = None;
+    println!("maybe_number = {:?}", maybe_number);
+    maybe_number = Some(42);
+    println!("maybe_number = {:?}", maybe_number);
+    match maybe_number {
+        Some(number) => println!("number + 10 = {}", number + 10),
+        None => println!("no number"),
+    }
+    let unwraped_number = maybe_number.expect("no number");
+    println!("unwraped_number = {}", unwraped_number);
+    let force_unwraped_number = maybe_number.unwrap();
+    println!("force_unwraped_number = {}", force_unwraped_number);
 }
