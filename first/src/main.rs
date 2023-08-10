@@ -281,14 +281,28 @@ fn optionals() {
     println!("----------optionals----------");
     let mut maybe_number: Option<i32> = None;
     println!("maybe_number = {:?}", maybe_number);
+    // safe
+    println!("maybe_number default = {}", maybe_number.unwrap_or(10));
     maybe_number = Some(42);
     println!("maybe_number = {:?}", maybe_number);
     match maybe_number {
         Some(number) => println!("number + 10 = {}", number + 10),
         None => println!("no number"),
     }
+    // unsafe
     let unwraped_number = maybe_number.expect("no number");
     println!("unwraped_number = {}", unwraped_number);
     let force_unwraped_number = maybe_number.unwrap();
     println!("force_unwraped_number = {}", force_unwraped_number);
+    // mutate
+    if let Some(number) = maybe_number.as_mut() {
+        *number += 10
+    }
+    println!("maybe_number = {:?}", maybe_number);
+    // unwrap multiple
+    let maybe_number2 = Some(22);
+    let maybe_number3 = Some(33);
+    if let (Some(number2), Some(number3)) = (maybe_number2, maybe_number3) {
+        println!("number2 + number3 = {}", number2 + number3);
+    }
 }
