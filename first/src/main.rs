@@ -289,6 +289,13 @@ fn optionals() {
         Some(number) => println!("number + 10 = {}", number + 10),
         None => println!("no number"),
     }
+    let maybe_number2: Option<i32> = None;
+    if let Some(number) = maybe_number2 {
+        println!("maybe_number2 = {}", number);
+    } else {
+        println!("no number");
+    }
+
     // unsafe
     let unwraped_number = maybe_number.expect("no number");
     println!("unwraped_number = {}", unwraped_number);

@@ -138,3 +138,11 @@ let doubled = numbers.iter().map(|x| x * 2).collect::<Vec<i32>>();
 // creating hashmap
 let mut map = HashMap::new();
 ```
+
+# Optionals
+```rust
+// safely unwrap
+// 1. use match
+// 2. use if let
+// 3. use unwrap_or
+```
