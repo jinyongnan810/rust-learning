@@ -9,6 +9,7 @@ fn main() {
     enums();
     collections();
     optionals();
+    handling_error();
 }
 
 fn variables() {
@@ -311,5 +312,26 @@ fn optionals() {
     let maybe_number3 = Some(33);
     if let (Some(number2), Some(number3)) = (maybe_number2, maybe_number3) {
         println!("number2 + number3 = {}", number2 + number3);
+    }
+}
+
+fn handling_error() {
+    println!("----------handling error----------");
+    let ok_value: Result<&str, Box<dyn std::error::Error>> = Ok("hello");
+    match ok_value {
+        Ok(value) => println!("value = {}", value),
+        Err(error) => println!("error = {}", error),
+    }
+
+    let ng_value: Result<&str, Box<dyn std::error::Error>> = Err("something when wrong...".into());
+    match ng_value {
+        Ok(value) => println!("value = {}", value),
+        Err(error) => println!("error = {}", error),
+    }
+
+    let void_ng_value: Result<&str, ()> = Err(());
+    match void_ng_value {
+        Ok(value) => println!("value = {}", value),
+        Err(error) => println!("error = {:?}", error),
     }
 }
