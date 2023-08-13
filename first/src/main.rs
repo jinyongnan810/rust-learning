@@ -315,6 +315,19 @@ fn optionals() {
     }
 }
 
+fn get_first_name() -> Result<String, ()> {
+    // Ok("Rust".to_string())
+    Err(())
+}
+fn get_last_name() -> Result<String, ()> {
+    println!("get_last_name");
+    Ok("lang".to_string())
+}
+fn get_full_name() -> Result<String, ()> {
+    let first_name = get_first_name()?;
+    let last_name = get_last_name()?;
+    Ok(format!("{} {}", first_name, last_name))
+}
 fn handling_error() {
     println!("----------handling error----------");
     let ok_value: Result<&str, Box<dyn std::error::Error>> = Ok("hello");
@@ -333,5 +346,20 @@ fn handling_error() {
     match void_ng_value {
         Ok(value) => println!("value = {}", value),
         Err(error) => println!("error = {:?}", error),
+    }
+
+    let expect_value: Result<&str, ()> = Ok("hello"); //Err(());
+    println!(
+        "expect_value = {}",
+        expect_value.expect("something when wrong...")
+    );
+
+    let check_ok_value: Result<&str, ()> = Ok("hello");
+    println!("is ok? {}", check_ok_value.is_ok());
+
+    let full_name = get_full_name();
+    match full_name {
+        Ok(value) => println!("full name = {}", value),
+        Err(error) => println!("get full name error = {:?}", error),
     }
 }
