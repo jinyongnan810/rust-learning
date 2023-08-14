@@ -146,3 +146,10 @@ let mut map = HashMap::new();
 // 2. use if let
 // 3. use unwrap_or
 ```
+
+# Error Handling
+```rust
+// is mainly about returning Result<successType, errorType>.
+// Result can be matched, mapped. and can be checked with is_ok.
+// append ? to result type will force an early stop when there's error.
+```

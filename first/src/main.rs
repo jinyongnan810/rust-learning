@@ -362,4 +362,6 @@ fn handling_error() {
         Ok(value) => println!("full name = {}", value),
         Err(error) => println!("get full name error = {:?}", error),
     }
+    let length = get_full_name().map(|name| name.len()).unwrap_or_default();
+    println!("length = {}", length);
 }
