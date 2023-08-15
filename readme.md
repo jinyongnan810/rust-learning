@@ -153,3 +153,15 @@ let mut map = HashMap::new();
 // Result can be matched, mapped. and can be checked with is_ok.
 // append ? to result type will force an early stop when there's error.
 ```
+
+# Lifetimes
+```rust
+// this won't work, because return value is garbage collected when function ends.
+fn get_string_slice() -> &str {
+    "hello"
+}
+// add 'static to make string live through entire app lifetime
+fn get_string_slice() -> &'static str {
+    "hello"
+}
+```

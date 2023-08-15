@@ -10,6 +10,7 @@ fn main() {
     collections();
     optionals();
     handling_error();
+    lifetimes()
 }
 
 fn variables() {
@@ -364,4 +365,15 @@ fn handling_error() {
     }
     let length = get_full_name().map(|name| name.len()).unwrap_or_default();
     println!("length = {}", length);
+}
+
+// fn get_string_slice() -> &str {
+//     "hello"
+// }
+fn get_string_slice() -> &'static str {
+    "hello"
+}
+fn lifetimes() {
+    println!("----------lifetimes----------");
+    println!("get_string_slice = {}", get_string_slice());
 }
