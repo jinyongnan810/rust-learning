@@ -373,7 +373,26 @@ fn handling_error() {
 fn get_string_slice() -> &'static str {
     "hello"
 }
+// general lifetime annotation
+fn get_random_name<'l>(a: &'l str, b: &'l str) -> &'l str {
+    if a.len() > b.len() {
+        a
+    } else {
+        b
+    }
+}
+struct PersonWithName<'l> {
+    name: &'l str,
+}
+// lifetime elision
+fn get_person_name(name: &str) -> &str {
+    name
+}
 fn lifetimes() {
     println!("----------lifetimes----------");
     println!("get_string_slice = {}", get_string_slice());
+    println!("get_random_name = {}", get_random_name("rust", "lang"));
+    let person = PersonWithName { name: "rust" };
+    println!("person name = {}", person.name);
+    println!("get_person_name = {}", get_person_name("rust"));
 }
