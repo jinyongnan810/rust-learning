@@ -384,9 +384,14 @@ fn get_random_name<'l>(a: &'l str, b: &'l str) -> &'l str {
 struct PersonWithName<'l> {
     name: &'l str,
 }
-// lifetime elision
+// lifetime elision for single input
 fn get_person_name(name: &str) -> &str {
     name
+}
+impl PersonWithName<'_> {
+    fn get_name(&self) -> &str {
+        self.name
+    }
 }
 fn lifetimes() {
     println!("----------lifetimes----------");
@@ -395,4 +400,5 @@ fn lifetimes() {
     let person = PersonWithName { name: "rust" };
     println!("person name = {}", person.name);
     println!("get_person_name = {}", get_person_name("rust"));
+    println!("person get_name = {}", person.get_name());
 }

@@ -164,4 +164,14 @@ fn get_string_slice() -> &str {
 fn get_string_slice() -> &'static str {
     "hello"
 }
+// or add specific lifetime
+fn get_random_name<'l>(a: &'l str, b: &'l str) -> &'l str {
+    if a.len() > b.len() {
+        a
+    } else {
+        b
+    }
+}
+
+// lifetime is for rust to safely deallocate references
 ```
