@@ -10,7 +10,8 @@ fn main() {
     collections();
     optionals();
     handling_error();
-    lifetimes()
+    lifetimes();
+    traits();
 }
 
 fn variables() {
@@ -401,4 +402,31 @@ fn lifetimes() {
     println!("person name = {}", person.name);
     println!("get_person_name = {}", get_person_name("rust"));
     println!("person get_name = {}", person.get_name());
+}
+
+// define trait and implement it
+trait Greeter {
+    fn greet(&self);
+}
+impl Greeter for PersonWithName<'_> {
+    fn greet(&self) {
+        println!("Hello, {}!", self.name);
+    }
+}
+// trait that creates new instance
+trait CanCreateNew {
+    fn new(name: String, age: u8) -> Self;
+}
+impl CanCreateNew for Person {
+    fn new(name: String, age: u8) -> Self {
+        Person { name, age }
+    }
+}
+
+fn traits() {
+    println!("----------traits----------");
+    let person = PersonWithName { name: "rust" };
+    person.greet();
+    let person2 = Person::new("rust".to_string(), 18);
+    println!("person2 = {:?}", person2);
 }
