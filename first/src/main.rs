@@ -423,10 +423,30 @@ impl CanCreateNew for Person {
     }
 }
 
+use std::fmt;
+
+impl fmt::Display for Person {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "name = {}, age = {}", self.name, self.age)
+    }
+}
+
+fn print_greet(greeter: &impl Greeter) {
+    greeter.greet();
+}
+fn print_greet2<T: Greeter>(greeter: &T) {
+    greeter.greet();
+}
+
 fn traits() {
     println!("----------traits----------");
     let person = PersonWithName { name: "rust" };
     person.greet();
     let person2 = Person::new("rust".to_string(), 18);
     println!("person2 = {:?}", person2);
+    // impl std::fmt::Display
+    println!("person2 = {}", person2);
+    // trait as parameter
+    print_greet(&person);
+    print_greet2(&person);
 }
