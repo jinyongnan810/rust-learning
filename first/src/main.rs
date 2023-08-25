@@ -438,6 +438,63 @@ fn print_greet2<T: Greeter>(greeter: &T) {
     greeter.greet();
 }
 
+trait Goodbye {
+    fn goodbye(&self);
+}
+impl Goodbye for PersonWithName<'_> {
+    fn goodbye(&self) {
+        println!("Goodbye, {}!", self.name);
+    }
+}
+// multiple traits
+fn print_greet_and_goodbye<T: Greeter + Goodbye>(greeter: &T) {
+    greeter.greet();
+    greeter.goodbye();
+}
+fn print_greet_and_goodbye2<T>(greeter: &T)
+where
+    T: Greeter + Goodbye,
+{
+    greeter.greet();
+    greeter.goodbye();
+}
+
+// trait of trait
+struct Person2 {
+    first_name: String,
+    last_name: String,
+}
+trait HasName {
+    fn get_first_name(&self) -> &str;
+    fn get_last_name(&self) -> &str;
+}
+impl HasName for Person2 {
+    fn get_first_name(&self) -> &str {
+        &self.first_name
+    }
+    fn get_last_name(&self) -> &str {
+        &self.last_name
+    }
+}
+trait FullName
+where
+    Self: HasName,
+{
+    fn get_full_name(&self) -> String;
+}
+impl<T> FullName for T
+where
+    T: HasName,
+{
+    fn get_full_name(&self) -> String {
+        format!(
+            "full name is: {} {}",
+            self.get_first_name(),
+            self.get_last_name()
+        )
+    }
+}
+
 fn traits() {
     println!("----------traits----------");
     let person = PersonWithName { name: "rust" };
@@ -449,4 +506,12 @@ fn traits() {
     // trait as parameter
     print_greet(&person);
     print_greet2(&person);
+    print_greet_and_goodbye(&person);
+    print_greet_and_goodbye2(&person);
+    // trait of trait
+    let person3 = Person2 {
+        first_name: "rust".to_string(),
+        last_name: "lang".to_string(),
+    };
+    println!("person3 = {}", person3.get_full_name());
 }
