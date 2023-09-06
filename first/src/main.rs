@@ -1,5 +1,7 @@
 // setup clippy
 #![deny(clippy::all)]
+
+mod pointers;
 fn main() {
     println!("Hello, Rust!");
     variables();
@@ -12,6 +14,7 @@ fn main() {
     handling_error();
     lifetimes();
     traits();
+    pointers::pointers();
 }
 
 fn variables() {

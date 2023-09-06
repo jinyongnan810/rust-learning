@@ -13,6 +13,19 @@ cargo install cargo-watch
 cargo-watch -qc -x run -x clippy
 ```
 
+# Import files
+```rust
+// main.rs
+mod pointers;
+fn main() {
+    pointers::pointers();
+}
+// pointers.rs
+pub fn pointers() {
+    println!("----------pointers----------")
+}
+```
+
 # Variables
 
 - Only `snake_case_variable` is valid.
@@ -174,4 +187,47 @@ fn get_random_name<'l>(a: &'l str, b: &'l str) -> &'l str {
 }
 
 // lifetime is for rust to safely deallocate references
+```
+
+# Traits
+```rust
+// basic
+trait Greeter {
+    fn greet(&self);
+}
+impl Greeter for Person {
+    fn greet(&self) {
+        println!("Hello, {}!", self.name);
+    }
+}
+trait CanCreateNew {
+    fn new(name: String, age: u8) -> Self;
+}
+impl CanCreateNew for Person {
+    fn new(name: String, age: u8) -> Self {
+        Person { name, age }
+    }
+}
+// use std::fmt trait
+use std::fmt;
+
+impl fmt::Display for Person {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "name = {}, age = {}", self.name, self.age)
+    }
+}
+// trait as params
+fn print_greet(greeter: &impl Greeter) {
+    greeter.greet();
+}
+fn print_greet2<T: Greeter>(greeter: &T) {
+    greeter.greet();
+}
+fn print_greet_and_goodbye2<T>(greeter: &T)
+where
+    T: Greeter + Goodbye,
+{
+    greeter.greet();
+    greeter.goodbye();
+}
 ```
